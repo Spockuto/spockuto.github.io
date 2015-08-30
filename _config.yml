@@ -1,0 +1,33 @@
+# Site settings
+title: "Venkkatesh Sekar"
+email: venkythesupersaiyan@gmail.com
+description: "Hacker Developer"
+baseurl: ""
+#url: "http://carte-noire.jacobtomlinson.co.uk/"
+title_description: "Hi!
+        This is Venkkatesh Sekar , Pursuing 2nd year in Computer Science and Engineering in National Institute of Technology , Tiruchirapalli"
+title_image: "profpic.jpg"
+google_analytics: "UA-20365477-4"
+disqus_account: cartenoire
+github_repository: https://github.com/jacobtomlinson/carte-noire
+addthis_id: ra-513c6fa83da6ec67
+post_limit: 5
+
+# Social usernames/URLs
+twitter_username: VenkkateshSekar
+github_username:  Spockuto
+linkedin_link: #http://carte-noire.jacobtomlinson.co.uk/
+google_plus_link: #http://carte-noire.jacobtomlinson.co.uk/
+stackoverflow_link: #http://carte-noire.jacobtomlinson.co.uk/
+facebook_link: https://www.facebook.com/Venkkatesh.Sekar.14
+
+# Footer
+footer_left: "Adapted from <a href=\"https://twitter.com/_JacobTomlinson\">Jacob Tomlinson</a>"
+footer_right: "&lt;/&gt; on <a href=\"https://github.com/Spockuto\">Github</a> &nbsp;<i class=\"fa fa-github-alt\"></i>"
+
+# Build settings
+markdown: redcarpet
+redcarpet:
+  extensions: ["no_intra_emphasis", "fenced_code_blocks", "autolink", "strikethrough", "superscript"]
+permalink: pretty
+exclude: [vendor]
