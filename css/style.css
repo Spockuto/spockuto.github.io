@@ -166,7 +166,7 @@ header p {
 	padding-bottom: 170px;
 }
 .intro-text H1 {
-	font-size: 70px;
+	font-size: 50px;
 	text-transform: uppercase;
 	color: #d9e0e2;
 	letter-spacing: 2px;
@@ -214,9 +214,10 @@ color: #5b777f;
 ul.cat li {
 	display: inline-block;
 }
-ol.type li {
-	display: inline-block;
-	margin-left: 20px;
+ul.cat {
+	 list-style-type: none;
+  	margin: 0;
+ 	 padding: 0;
 }
 ol.type li a {
 	color: #51633d;
