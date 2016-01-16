@@ -12,11 +12,11 @@
 
           var code = getParameterByName("code");
           if(code){
-            access_token(code);}
+            accessToken(code);}
 
-          var access_token = getParameterByName("access_token");
-          if(access_token){
-            Follow(access_token);
+          var access = getParameterByName("access_token");
+          if(access){
+            Follow(access);
             }
           }
     
@@ -31,7 +31,7 @@
       window.open("https://github.com/login/oauth/authorize?client_id=e644584e5ceb8a2eb2c1&scope=user:follow&redirect_uri=http://www.venkkateshsekar.me/follow");
     }
 
-    function access_token(code){
+    function accessToken(code){
 
       var data = new FormData();
       data.append('client_id', 'e644584e5ceb8a2eb2c1');
