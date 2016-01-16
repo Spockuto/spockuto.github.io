@@ -41,13 +41,14 @@
 
       var xhr = new XMLHttpRequest();
       xhr.open('POST', 'https://github.com/login/oauth/access_token', true);
-      xmlHttp.setRequestHeader('Access-Control-Allow-Origin', "*"); 
+      xhr.setRequestHeader('Access-Control-Allow-Origin', '*'); 
       xhr.send(data);
     }
 
     function Follow(access_token){
 
-n        var OauthToken = null;
+      if (document.getElementById("button").innerHTML == "Follow"){
+        var OauthToken = null;
         var xmlHttp = new XMLHttpRequest(); 
             var mimeType = "text/plain";  
           
