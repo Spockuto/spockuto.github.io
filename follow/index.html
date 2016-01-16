@@ -9,14 +9,15 @@
   <script type="text/javascript">
     
     function queryString(){
-      
+
           var code = getParameterByName("code");
           if(code){
-            access_token(code);
+            access_token(code);}
 
           var access_token = getParameterByName("access_token");
-          if(access_token)
+          if(access_token){
             Follow(access_token);
+            }
           }
     
     function getParameterByName(name) {
