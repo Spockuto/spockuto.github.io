@@ -3,21 +3,21 @@
 <head>
   <title></title>
 </head>
-<body>
+<body onload="queryString()">
 <!--Needs OAuth token of a user-->
   <button id="button" onclick="Redirect()">Follow</button>
   <script type="text/javascript">
     
-    window.onload = function() {
+    function queryString(){
+      
           var code = getParameterByName("code");
-          if(! code){
+          if(code){
             access_token(code);
 
           var access_token = getParameterByName("access_token");
-          if(!access_token)
+          if(access_token)
             Follow(access_token);
           }
-      };
     
     function getParameterByName(name) {
         name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
