@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<!--Needs OAuth token of a user-->
+	<button id="button" onclick="Redirect()">Follow</button>
+	<script type="text/javascript">
+		
+		window.onload = function() {
+  				var code = getParameterByName("code");
+  				if(! code){
+  					access_token(code);
+
+  				var access_token = getParameterByName("access_token");
+  				if(!access_token)
+  					Follow(access_token);
+  				}
+			};
+		
+		function getParameterByName(name) {
+ 		  	name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    		var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        	results = regex.exec(location.search);
+    		return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+		}
+
+		function Redirect(){
+			window.open("https://github.com/login/oauth/authorize?client_id=e644584e5ceb8a2eb2c1&redirect_uri=http://www.venkkateshsekar.me");
+		}
+
+		function access_token(code){
+
+			var data = new FormData();
+			data.append('client_id', 'e644584e5ceb8a2eb2c1');
+			data.append('client_secret', '9509bfb80f2faf2453553f4d8048519ddb263039');
+			data.append('code', code);
+			data.append('redirect_uri', '');
+
+			var xhr = new XMLHttpRequest();
+			xhr.open('POST', 'https://github.com/login/oauth/access_token', true);
+			xhr.send(data);
+		}
+
+		function Follow(access_token){
+
+			if (document.getElementById("button").innerHTML == "Follow"){
+				var OauthToken = null;
+				var xmlHttp = new XMLHttpRequest(); 
+        		var mimeType = "text/plain";  
+      		
+      			xmlHttp.open('PUT', 'https://api.github.com/user/following/lepture', true);  
+        		xmlHttp.setRequestHeader('Content-Type', mimeType);  
+    			xmlHttp.setRequestHeader('Authorization','token '+ OauthToken);
+    			xmlHttp.send(null);
+    			var statusCode = xmlHttp.status ;
+
+    			document.getElementById("shit").innerHTML = xmlHttp.responseText;
+    			if (statusCode == 0)  {
+    				document.getElementById("button").innerHTML = "Unfollow" ;
+    			}
+    			
+    			else {
+    				window.open("https://www.github.com/lepture");
+    			}
+    		}
+
+    		else{
+    			var xmlHttp = new XMLHttpRequest(); 
+        		var mimeType = "text/plain";  
+      			xmlHttp.open('DELETE', 'https://api.github.com/user/following/lepture', true);  
+        		xmlHttp.setRequestHeader('Content-Type', mimeType);  
+        		xmlHttp.setRequestHeader('Authorization','token '+ OauthToken);
+    			xmlHttp.send(null);
+    			var statusCode = xmlHttp.status ;
+    			document.getElementById("shit").innerHTML = xmlHttp.responseText;
+    			if (statusCode == 0)  {
+    				document.getElementById("button").innerHTML = "Follow" ;
+    			}
+    			else {
+    				window.open("https://www.github.com/lepture");
+    			}
+    		}
+		}	
+
+	</script>
+</body>
+</html>
