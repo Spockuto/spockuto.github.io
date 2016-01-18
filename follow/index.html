@@ -5,7 +5,7 @@
 </head>
 <body onload="queryStringParse()">
 
-
+<p id="shit"></p>
   <button id="button" onclick="getAccessCode()">Follow</button>
   <script type="text/javascript">
     
@@ -47,8 +47,16 @@
 
       var xhr = new XMLHttpRequest();
       xhr.open('POST', 'https://github.com/login/oauth/access_token', true);
-      xhr.setRequestHeader('Access-Control-Allow-Origin', origin); 
+      xhr.setRequestHeader('Content-Type', 'application/json');
+      xhr.setRequestHeader("Content-length", data.length);
+      xhr.setRequestHeader("Connection", "close");
+      xhr.onreadystatechange = handleResponse;
       xhr.send(data);
+
+      console.log(xhr.responseText);
+      console.log(xhr.status);
+      console.log(xhr.getAllResponseHeaders().toLowerCase());
+
     }
 
     function Follow(access_token){
