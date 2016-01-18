@@ -3,20 +3,26 @@
 <head>
   <title></title>
 </head>
-<body onload="queryString()">
-<!--Needs OAuth token of a user-->
-  <button id="button" onclick="Redirect()">Follow</button>
+<body onload="queryStringParse()">
+
+
+  <button id="button" onclick="getAccessCode()">Follow</button>
   <script type="text/javascript">
     
-    function queryString(){
+
+    var client_id     = 'e644584e5ceb8a2eb2c1';
+    var client_secret = '9509bfb80f2faf2453553f4d8048519ddb263039';
+    var redirect_uri  = 'http://www.venkkateshsekar.me/follow/';
+    
+    function queryStringParse(){
 
           var code = getParameterByName("code");
           if(code){
-            accessToken(code);}
+            getAccessToken(code);}
 
-          var access = getParameterByName("access_token");
-          if(access){
-            Follow(access);
+          var access_token = getParameterByName("access_token");
+          if(access_token){
+            Follow(access_token);
             }
           }
     
@@ -27,21 +33,21 @@
         return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
     }
 
-    function Redirect(){
-      window.open("https://github.com/login/oauth/authorize?client_id=e644584e5ceb8a2eb2c1&scope=user:follow&redirect_uri=http://www.venkkateshsekar.me/follow");
+    function getAccessCode(){
+      window.open("https://github.com/login/oauth/authorize?client_id="+ client_id + "&scope=user:follow&redirect_uri=" + redirect_uri);
     }
 
-    function accessToken(code){
+    function getAccessToken(code){
 
       var data = new FormData();
-      data.append('client_id', 'e644584e5ceb8a2eb2c1');
-      data.append('client_secret', '9509bfb80f2faf2453553f4d8048519ddb263039');
+      data.append('client_id',client_id);
+      data.append('client_secret',client_secret);
       data.append('code', code);
-      data.append('redirect_uri','http://www.venkkateshsekar.me/follow/');
+      data.append('redirect_uri',redirect_uri);
 
       var xhr = new XMLHttpRequest();
       xhr.open('POST', 'https://github.com/login/oauth/access_token', true);
-      xhr.setRequestHeader('Access-Control-Allow-Origin', '*'); 
+      xhr.setRequestHeader('Access-Control-Allow-Origin', true); 
       xhr.send(data);
     }
 
