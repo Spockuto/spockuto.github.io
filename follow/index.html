@@ -48,11 +48,7 @@
       var xhr = new XMLHttpRequest();
       xhr.open('POST', 'https://github.com/login/oauth/access_token', true);
       xhr.setRequestHeader('Content-Type', 'application/json');
-      xhr.setRequestHeader("Content-length", data.length);
-      xhr.setRequestHeader("Connection", "close");
-      xhr.onreadystatechange = handleResponse;
       xhr.send(data);
-
       console.log(xhr.responseText);
       console.log(xhr.status);
       console.log(xhr.getAllResponseHeaders().toLowerCase());
