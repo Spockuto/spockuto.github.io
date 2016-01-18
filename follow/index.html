@@ -13,7 +13,7 @@
     var client_id     = 'e644584e5ceb8a2eb2c1';
     var client_secret = '9509bfb80f2faf2453553f4d8048519ddb263039';
     var redirect_uri  = 'http://www.venkkateshsekar.me/follow/';
-    
+    var origin = 'http://www.venkkateshsekar.me' ;
     function queryStringParse(){
 
           var code = getParameterByName("code");
@@ -47,7 +47,7 @@
 
       var xhr = new XMLHttpRequest();
       xhr.open('POST', 'https://github.com/login/oauth/access_token', true);
-      xhr.setRequestHeader('Access-Control-Allow-Origin', true); 
+      xhr.setRequestHeader('Access-Control-Allow-Origin', origin); 
       xhr.send(data);
     }
 
