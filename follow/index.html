@@ -46,7 +46,7 @@
       data.append('redirect_uri',redirect_uri);
 
       var xhr = new XMLHttpRequest();
-      xhr.open('POST', 'https://github.com/login/oauth/access_token', true);
+      xhr.open('POST', 'http://cors.io/?u=https://github.com/login/oauth/access_token', true);
       xhr.setRequestHeader('Content-Type', 'application/json');
       xhr.send(data);
       console.log(xhr.responseText);
