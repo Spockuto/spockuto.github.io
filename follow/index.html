@@ -73,8 +73,8 @@
       xmlHttp.setRequestHeader('Authorization','token '+ access_token);
       xmlHttp.send(null);
       xmlHttp.onreadystatechange = function () {
-      if (xhr.readyState == 4) {
-        if(xhr.status == 201)
+      if (xmlHttp.readyState == 4) {
+        if(xmlHttp.status == 201)
           document.getElementById("github-follow").innerHTML = changeText ;
         else
           window.open("https://www.github.com/" + username , "_self");
