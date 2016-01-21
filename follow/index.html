@@ -43,11 +43,13 @@
     
     xhr.onreadystatechange = function () {
       if (xhr.readyState == 4) {
-        if(xhr.status == 200)
+        if(xhr.status == 200){
           var access_token = xhr.responseText.slice(13,53);
           Follow(access_token);
-        else
+        } 
+        else {
           alert("Error loading page\n");
+        }
       }
     };
       xhr.send(true);     
