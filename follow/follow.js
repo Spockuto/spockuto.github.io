@@ -82,6 +82,7 @@
     }
     var code = getParameterByName("code");
     if(code){
+      location.href = redirect_uri ;
       getAccessToken(code);
     }
   }
