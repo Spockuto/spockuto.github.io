@@ -41,14 +41,14 @@
 
     function getAccessToken(code){
 
-      var data = new FormData();
+      /*var data = new FormData();
       data.append('client_id',client_id);
       data.append('client_secret',client_secret);
       data.append('code', code);
       data.append('redirect_uri',redirect_uri);
       
       var xhr = new XMLHttpRequest();
-      var url  = "http://github.com/login/oauth/access_token?client_id=" + client_id + "&client_secret=" + client_secret + "&code=" + code + "&redirect_uri=" + redirect_uri + "&state=12345678";
+      
       
       xhr.open('POST', url , true); 
       xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
@@ -56,7 +56,9 @@
       xhr.send(true);
       console.log(xhr.responseText);
       console.log(xhr.status);
-      console.log(xhr.getAllResponseHeaders().toLowerCase());
+      console.log(xhr.getAllResponseHeaders().toLowerCase());*/
+      var url  = "http://github.com/login/oauth/access_token?client_id=" + client_id + "&client_secret=" + client_secret + "&code=" + code + "&redirect_uri=" + redirect_uri + "&state=12345678";
+      window.open(url);
     }
 
     function Follow(access_token){
