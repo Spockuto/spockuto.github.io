@@ -8,13 +8,11 @@
 <p id="shit"></p>
   <button id="button" onclick="getAccessCode()">Follow</button>
   <script type="text/javascript">
-    
 
     var client_id     = 'e644584e5ceb8a2eb2c1';
     var client_secret = '9509bfb80f2faf2453553f4d8048519ddb263039';
     var redirect_uri  = 'http://www.venkkateshsekar.me/follow/';
     var origin        = 'http://www.venkkateshsekar.me' ;
-    
 
     function queryStringParse(){
 
@@ -42,7 +40,7 @@
     function getAccessToken(code){
 
       var data = new FormData();
-      data.append('client_id',client_id);c
+      data.append('client_id',client_id);
       data.append('client_secret',client_secret);
       data.append('code', code);
       data.append('redirect_uri',redirect_uri);
