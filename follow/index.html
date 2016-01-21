@@ -34,7 +34,7 @@
     }
 
     function getAccessCode(){
-      window.open("https://github.com/login/oauth/authorize?client_id="+ client_id + "&scope=user:follow&redirect_uri=" + redirect_uri);
+      window.open("https://github.com/login/oauth/authorize?client_id="+ client_id + "&scope=user:follow&redirect_uri=" + redirect_uri , "_self");
     }
 
     function getAccessToken(code){
@@ -44,15 +44,15 @@
       data.append('client_secret',client_secret);
       data.append('code', code);
       data.append('redirect_uri',redirect_uri);
-
       var xhr = new XMLHttpRequest();
-      xhr.open('POST', 'http://cors.io/?u=https://github.com/login/oauth/access_token', true);
+
+      
+      xhr.open('POST', 'http://github.com/login/oauth/access_token');
       xhr.setRequestHeader('Content-Type', 'application/json');
       xhr.send(data);
       console.log(xhr.responseText);
       console.log(xhr.status);
       console.log(xhr.getAllResponseHeaders().toLowerCase());
-
     }
 
     function Follow(access_token){
