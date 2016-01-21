@@ -46,7 +46,7 @@
       data.append('redirect_uri',redirect_uri);
       
       var xhr = new XMLHttpRequest();
-       var url  = "http://cors.io/?u=http://github.com/login/oauth/access_token?client_id=" + client_id + "&client_secret=" + client_secret + "&code=" + code + "&redirect_uri=" + redirect_uri + "&state=12345678";
+       var url  = "https://crossorigin.me/http://github.com/login/oauth/access_token?client_id=" + client_id + "&client_secret=" + client_secret + "&code=" + code + "&redirect_uri=" + redirect_uri + "&state=12345678";
       
       xhr.open('POST', url , true); 
       xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
