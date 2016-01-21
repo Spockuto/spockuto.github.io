@@ -60,7 +60,7 @@
       var xmlHttp = new XMLHttpRequest(); 
       var mimeType = "text/plain";  
       
-      if (document.getElementById("button").innerHTML == "Follow"){
+      if (document.getElementById("github-follow").innerHTML == "Follow"){
         xmlHttp.open('PUT', 'https://api.github.com/user/following/' + username, true);
         var changeText = "Unfollow";
       }
