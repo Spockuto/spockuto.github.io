@@ -74,8 +74,8 @@
   window.onload = queryStringParse ;
 
   function queryStringParse(){
-    if (localStorage("follow-" + username)){
-      document.getElementById("github-follow").innerHTML = localStorage("follow-" + username);
+    if (localStorage.getItem("follow-" + username)){
+      document.getElementById("github-follow").innerHTML = localStorage.getItem("follow-" + username);
     }
     else {
       document.getElementById("github-follow").innerHTML = "Follow";
@@ -141,7 +141,7 @@
     xmlHttp.onreadystatechange = function () {
       if (xmlHttp.readyState == 4) {
         if(xmlHttp.status == 204)
-          document.getElementById("github-follow").innerHTML = localStorage("follow-" + username) ;
+          document.getElementById("github-follow").innerHTML = localStorage.getItem("follow-" + username) ;
         else
           window.open("https://www.github.com/" + username , "_self");
       }
