@@ -140,9 +140,10 @@
     xmlHttp.send(null);
     xmlHttp.onreadystatechange = function () {
       if (xmlHttp.readyState == 4) {
-        if(xmlHttp.status == 204)
+        if(xmlHttp.status == 204) {
           document.getElementById("github-follow").innerHTML = localStorage.getItem("follow-" + username) ;
           location.href = redirect_uri ;
+        }
         else
           window.open("https://www.github.com/" + username , "_self");
       }
