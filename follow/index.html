@@ -58,8 +58,10 @@
       console.log(xhr.status);
       console.log(xhr.getAllResponseHeaders().toLowerCase());*/
       var url  = "http://github.com/login/oauth/access_token?client_id=" + client_id + "&client_secret=" + client_secret + "&code=" + code + "&redirect_uri=" + redirect_uri + "&state=12345678";
-      var access_token  = window.open(url);
-      console.log(access_token);  
+      
+      script = document.createElement('script');  
+      script.type = 'text/javascript';
+      script.src = url;
     }
 
     function Follow(access_token){
