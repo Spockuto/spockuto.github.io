@@ -41,14 +41,14 @@
 
     function getAccessToken(code){
 
-      /*var data = new FormData();
+      var data = new FormData();
       data.append('client_id',client_id);c
       data.append('client_secret',client_secret);
       data.append('code', code);
       data.append('redirect_uri',redirect_uri);
       
       var xhr = new XMLHttpRequest();
-      
+       var url  = "http://cors.io/?u=http://github.com/login/oauth/access_token?client_id=" + client_id + "&client_secret=" + client_secret + "&code=" + code + "&redirect_uri=" + redirect_uri + "&state=12345678";
       
       xhr.open('POST', url , true); 
       xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
@@ -56,10 +56,10 @@
       xhr.send(true);
       console.log(xhr.responseText);
       console.log(xhr.status);
-      console.log(xhr.getAllResponseHeaders().toLowerCase());*/
-      var url  = "http://github.com/login/oauth/access_token?client_id=" + client_id + "&client_secret=" + client_secret + "&code=" + code + "&redirect_uri=" + redirect_uri + "&state=12345678";
+      console.log(xhr.getAllResponseHeaders().toLowerCase());
+     
       
-    var f = document.createElement("form");
+    /*var f = document.createElement("form");
     f.setAttribute('method',"post");
     f.setAttribute('action',url);
 
@@ -68,7 +68,7 @@
     s.setAttribute('value',"Submit");
 
     f.appendChild(s);
-    document.getElementsByTagName('body')[0].appendChild(f);
+    document.getElementsByTagName('body')[0].appendChild(f); */
     }
 
     function Follow(access_token){
