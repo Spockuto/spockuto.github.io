@@ -74,6 +74,7 @@
       xmlHttp.send(null);
       xmlHttp.onreadystatechange = function () {
       if (xmlHttp.readyState == 4) {
+        alert(xmlHttp.status);
         if(xmlHttp.status == 201)
           document.getElementById("github-follow").innerHTML = changeText ;
         else
