@@ -13,7 +13,9 @@
     var client_id     = 'e644584e5ceb8a2eb2c1';
     var client_secret = '9509bfb80f2faf2453553f4d8048519ddb263039';
     var redirect_uri  = 'http://www.venkkateshsekar.me/follow/';
-    var origin = 'http://www.venkkateshsekar.me' ;
+    var origin        = 'http://www.venkkateshsekar.me' ;
+    
+
     function queryStringParse(){
 
           var code = getParameterByName("code");
@@ -44,13 +46,17 @@
       data.append('client_secret',client_secret);
       data.append('code', code);
       data.append('redirect_uri',redirect_uri);
-      var xhr = new XMLHttpRequest();
-
       
-      xhr.open('POST', 'http://github.com/login/oauth/access_token'); 
-      xhr.setRequestHeader('Content-Type', 'application/json');
-      xhr.setRequestHeader('Access-Control-Allow-Origin',origin);
-      xhr.send(data);
+      var xhr = new XMLHttpRequest();
+      var url  = "http://github.com/login/oauth/access_token?client_id=" + client_id + "&client_secret=" + client_secret + "&code=" + code + "&redirect_uri" + redirect_uri ;
+      
+      xhr.open('POST', url , true); 
+      xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+      xhr.setRequestHeader('Origin',origin);
+      xhr.setRequestHeader( 'Access-Control-Request-Method ',' POST ');
+      xhr.setRequestHeader( 'Access-Control-Request-Headers ', 'X-Requested-With');
+
+      xhr.send(true);
       console.log(xhr.responseText);
       console.log(xhr.status);
       console.log(xhr.getAllResponseHeaders().toLowerCase());
