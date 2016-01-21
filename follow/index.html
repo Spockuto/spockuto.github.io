@@ -4,7 +4,7 @@
   <title></title>
 </head>
 <body onload="queryStringParse()">
-<button id="github-follow" onclick="getAccessCode()">Follow</button>
+<button id="github-follow" onclick="getAccessCode()"></button>
 <script type="text/javascript">
 
   var client_id     = 'e644584e5ceb8a2eb2c1';
@@ -13,7 +13,14 @@
   var origin        = 'http://www.venkkateshsekar.me' ;
   var random        = (Math.random() + 1).toString(36).substring(7);
   var username      = "lepture";
+
   function queryStringParse(){
+    if (localStorage.follow){
+      document.getElementById("github-follow").innerHTML = localStorage.follow;
+    }
+    else {
+      document.getElementById("github-follow").innerHTML = "Follow";
+    }
     var code = getParameterByName("code");
     if(code){
       getAccessToken(code);
@@ -62,11 +69,11 @@
       
       if (document.getElementById("github-follow").innerHTML == "Follow"){
         xmlHttp.open('PUT', 'https://api.github.com/user/following/' + username, true);
-        var changeText = "Unfollow";
+        localStorage.setItem("follow", "Follow");
       }
       else{
         xmlHttp.open('DELETE', 'https://api.github.com/user/following/' + username, true);
-        var changeText = "Follow";
+         localStorage.setItem("follow", "Unfollow");
       }
       
       xmlHttp.setRequestHeader('Content-Type', mimeType);  
@@ -75,7 +82,7 @@
       xmlHttp.onreadystatechange = function () {
       if (xmlHttp.readyState == 4) {
         if(xmlHttp.status == 204)
-          document.getElementById("github-follow").innerHTML = changeText ;
+          document.getElementById("github-follow").innerHTML = localStorage.follow ;
         else
           window.open("https://www.github.com/" + username , "_self");
       }
