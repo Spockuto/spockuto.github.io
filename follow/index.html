@@ -69,11 +69,11 @@
       
       if (document.getElementById("github-follow").innerHTML == "Follow"){
         xmlHttp.open('PUT', 'https://api.github.com/user/following/' + username, true);
-        localStorage.setItem("follow", "Follow");
+        localStorage.setItem("follow", "Unfollow");
       }
       else{
         xmlHttp.open('DELETE', 'https://api.github.com/user/following/' + username, true);
-         localStorage.setItem("follow", "Unfollow");
+         localStorage.setItem("follow", "Follow");
       }
       
       xmlHttp.setRequestHeader('Content-Type', mimeType);  
