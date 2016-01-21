@@ -4,121 +4,81 @@
   <title></title>
 </head>
 <body onload="queryStringParse()">
+<button id="github-follow" onclick="getAccessCode()">Follow</button>
+<script type="text/javascript">
 
-<p id="shit"></p>
-  <button id="button" onclick="getAccessCode()">Follow</button>
-  <script type="text/javascript">
-
-    var client_id     = 'e644584e5ceb8a2eb2c1';
-    var client_secret = '9509bfb80f2faf2453553f4d8048519ddb263039';
-    var redirect_uri  = 'http://www.venkkateshsekar.me/follow/';
-    var origin        = 'http://www.venkkateshsekar.me' ;
-
-    function queryStringParse(){
-
-          var code = getParameterByName("code");
-          if(code){
-            getAccessToken(code);}
-
-          var access_token = getParameterByName("access_token");
-          if(access_token){
-            Follow(access_token);
-            }
-          }
+  var client_id     = 'e644584e5ceb8a2eb2c1';
+  var client_secret = '9509bfb80f2faf2453553f4d8048519ddb263039';
+  var redirect_uri  = 'http://www.venkkateshsekar.me/follow/';
+  var origin        = 'http://www.venkkateshsekar.me' ;
+  var random        = (Math.random() + 1).toString(36).substring(7);
+  var username      = "lepture";
+  function queryStringParse(){
+    var code = getParameterByName("code");
+    if(code){
+      getAccessToken(code);
+    }
+  }
     
-    function getParameterByName(name) {
-        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-          results = regex.exec(location.search);
-        return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-    }
+  function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+    results = regex.exec(location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+  }
 
-    function getAccessCode(){
-      window.open("http://github.com/login/oauth/authorize?client_id="+ client_id + "&scope=user:follow&redirect_uri=" + redirect_uri + "&state=12345678", "_self");
-    }
+  function getAccessCode(){
+    window.open("http://github.com/login/oauth/authorize?client_id="+ client_id 
+    +"&scope=user:follow&redirect_uri=" + redirect_uri + "&state=" +random, "_self");
+  }
 
-    function getAccessToken(code){
-
-      var data = new FormData();
-      data.append('client_id',client_id);
-      data.append('client_secret',client_secret);
-      data.append('code', code);
-      data.append('redirect_uri',redirect_uri);
+  function getAccessToken(code){
+    
+    var xhr = new XMLHttpRequest();
+    var url  = "https://crossorigin.me/http://github.com/login/oauth/access_token?client_id=" + client_id + "&client_secret=" + client_secret + 
+    "&code=" + code + "&redirect_uri=" + redirect_uri + "&state=" + random;
       
-      var xhr = new XMLHttpRequest();
-       var url  = "https://crossorigin.me/http://github.com/login/oauth/access_token?client_id=" + client_id + "&client_secret=" + client_secret + "&code=" + code + "&redirect_uri=" + redirect_uri + "&state=12345678";
-      
-      xhr.open('POST', url , true); 
-      xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-
-      xhr.onreadystatechange = function (aEvt) {
+    xhr.open('POST', url , true); 
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    
+    xhr.onreadystatechange = function () {
       if (xhr.readyState == 4) {
-      if(xhr.status == 200)
-        alert(xhr.responseText);
-      else
-        alert("Error loading page\n");
-       }
-      };
-      xhr.send(true);
+        if(xhr.status == 200)
+          var access_token = xhr.responseText.slice(13,53);
+          Follow(access_token);
+        else
+          alert("Error loading page\n");
+      }
+    };
+      xhr.send(true);     
+  }
 
-      console.log(xhr.responseText);
-      console.log(xhr.status);
-      console.log(xhr.getAllResponseHeaders().toLowerCase());
-     
+  function Follow(access_token){
+
+      var xmlHttp = new XMLHttpRequest(); 
+      var mimeType = "text/plain";  
       
-    /*var f = document.createElement("form");
-    f.setAttribute('method',"post");
-    f.setAttribute('action',url);
-
-    var s = document.createElement("input"); 
-    s.setAttribute('type',"submit");
-    s.setAttribute('value',"Submit");
-
-    f.appendChild(s);
-    document.getElementsByTagName('body')[0].appendChild(f); */
-    }
-
-    function Follow(access_token){
-
       if (document.getElementById("button").innerHTML == "Follow"){
-        var OauthToken = null;
-        var xmlHttp = new XMLHttpRequest(); 
-            var mimeType = "text/plain";  
-          
-            xmlHttp.open('PUT', 'https://api.github.com/user/following/lepture', true);  
-            xmlHttp.setRequestHeader('Content-Type', mimeType);  
-          xmlHttp.setRequestHeader('Authorization','token '+ access_token);
-          xmlHttp.send(null);
-          var statusCode = xmlHttp.status ;
-
-          document.getElementById("shit").innerHTML = xmlHttp.responseText;
-          if (statusCode == 0)  {
-            document.getElementById("button").innerHTML = "Unfollow" ;
-          }
-          
-          else {
-            window.open("https://www.github.com/lepture");
-          }
-        }
-
-        else{
-          var xmlHttp = new XMLHttpRequest(); 
-            var mimeType = "text/plain";  
-            xmlHttp.open('DELETE', 'https://api.github.com/user/following/lepture', true);  
-            xmlHttp.setRequestHeader('Content-Type', mimeType);  
-            xmlHttp.setRequestHeader('Authorization','token '+ access_token);
-          xmlHttp.send(null);
-          var statusCode = xmlHttp.status ;
-          document.getElementById("shit").innerHTML = xmlHttp.responseText;
-          if (statusCode == 0)  {
-            document.getElementById("button").innerHTML = "Follow" ;
-          }
-          else {
-            window.open("https://www.github.com/lepture");
-          }
-        }
-    } 
-
+        xmlHttp.open('PUT', 'https://api.github.com/user/following/' + username, true);
+        var changeText = "Unfollow";
+      }
+      else{
+        xmlHttp.open('DELETE', 'https://api.github.com/user/following/' + username, true);
+        var changeText = "Follow";
+      }
+      
+      xmlHttp.setRequestHeader('Content-Type', mimeType);  
+      xmlHttp.setRequestHeader('Authorization','token '+ access_token);
+      xmlHttp.send(null);
+      xmlHttp.onreadystatechange = function () {
+      if (xhr.readyState == 4) {
+        if(xhr.status == 201)
+          document.getElementById("github-follow").innerHTML = changeText ;
+        else
+          window.open("https://www.github.com/" + username , "_self");
+      }
+    };
+  } 
   </script>
 </body>
 </html>
