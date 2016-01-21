@@ -1,10 +1,45 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title></title>
+  <title>Follow</title>
+    
+  <style type="text/css">
+    button {
+      color: #6496c8;
+      background: rgba(0,0,0,0);
+      border: solid 5px #6496c8;
+      width: 400px;  
+      height: 100px;
+      font-size: 50px;
+      position: absolute;
+      top: 50%;
+    }
+    button:hover,
+    button.hover {
+      border-color: #346392;
+      color: #346392;
+      width: 400px;  
+      height: 100px;
+      font-size: 50px;
+      position: absolute;
+      top: 50%;
+    }
+    div {
+      position: absolute;    
+      width: 400px;
+      height: 100px;
+      left: 50%;
+      top: 50%;
+      margin-left: -200px;
+      margin-top: -50px;
+   }
+
+  </style>
 </head>
 <script src = "follow.js"></script>
 <body>
-<button id="github-follow" onclick="getAccessCode()"></button>
+<div>
+  <button id="github-follow" onclick="getAccessCode()"></button>
+</div>  
 </body>
 </html>

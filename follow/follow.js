@@ -6,26 +6,7 @@
  * License
  * ----------------------------------------------------------------------------
  *
- * This code is triple licensed using Apache Software License 2.0,
- * Mozilla Public License or GNU Public License
- * 
- * ////////////////////////////////////////////////////////////////////////////
- * 
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not
- * use this file except in compliance with the License.  You may obtain a copy
- * of the License at http://www.apache.org/licenses/LICENSE-2.0
- * 
- * ////////////////////////////////////////////////////////////////////////////
- * 
- * The contents of this file are subject to the Mozilla Public License
- * Version 1.1 (the "License"); you may not use this file except in
- * compliance with the License. You may obtain a copy of the License at
- * http://www.mozilla.org/MPL/
- * 
- * Software distributed under the License is distributed on an "AS IS"
- * basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See the
- * License for the specific language governing rights and limitations
- * under the License.
+ * This code is licensed using GNU Public License
  * 
  * ////////////////////////////////////////////////////////////////////////////
  * 
@@ -61,8 +42,6 @@
  *  <button id="github-follow" onclick="getAccessCode()"></button>
  * 
  */
-  
-
 
   var client_id     = 'e644584e5ceb8a2eb2c1';
   var client_secret = '9509bfb80f2faf2453553f4d8048519ddb263039';
