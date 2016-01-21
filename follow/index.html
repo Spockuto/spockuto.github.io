@@ -36,7 +36,7 @@
     }
 
     function getAccessCode(){
-      window.open("http://github.com/login/oauth/authorize?client_id="+ client_id + "&scope=user:follow&redirect_uri=" + redirect_uri, "_self");
+      window.open("http://github.com/login/oauth/authorize?client_id="+ client_id + "&scope=user:follow&redirect_uri=" + redirect_uri + "&state=12345678", "_self");
     }
 
     function getAccessToken(code){
@@ -48,7 +48,7 @@
       data.append('redirect_uri',redirect_uri);
       
       var xhr = new XMLHttpRequest();
-      var url  = "http://github.com/login/oauth/access_token?client_id=" + client_id + "&client_secret=" + client_secret + "&code=" + code + "&redirect_uri=" + redirect_uri ;
+      var url  = "http://github.com/login/oauth/access_token?client_id=" + client_id + "&client_secret=" + client_secret + "&code=" + code + "&redirect_uri=" + redirect_uri + "&state=12345678";
       
       xhr.open('POST', url , true); 
       xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
