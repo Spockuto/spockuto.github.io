@@ -52,9 +52,8 @@
       
       xhr.open('POST', url , true); 
       xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-      xhr.setRequestHeader('Origin',origin);
-      xhr.setRequestHeader( 'Access-Control-Request-Method ',' POST ');
-      xhr.setRequestHeader( 'Access-Control-Request-Headers ', 'X-Requested-With');
+      xhr.setRequestHeader( 'Access-Control-Request-Method' ,'POST');
+      xhr.setRequestHeader( 'Access-Control-Request-Headers' , 'X-Requested-With');
 
       xhr.send(true);
       console.log(xhr.responseText);
