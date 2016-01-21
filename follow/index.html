@@ -48,12 +48,10 @@
       data.append('redirect_uri',redirect_uri);
       
       var xhr = new XMLHttpRequest();
-      var url  = "http://github.com/login/oauth/access_token?client_id=" + client_id + "&client_secret=" + client_secret + "&code=" + code + "&redirect_uri" + redirect_uri ;
+      var url  = "http://github.com/login/oauth/access_token?client_id=" + client_id + "&client_secret=" + client_secret + "&code=" + code + "&redirect_uri=" + redirect_uri ;
       
       xhr.open('POST', url , true); 
       xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-      xhr.setRequestHeader( 'Access-Control-Request-Method' ,'POST');
-      xhr.setRequestHeader( 'Access-Control-Request-Headers' , 'X-Requested-With');
 
       xhr.send(true);
       console.log(xhr.responseText);
