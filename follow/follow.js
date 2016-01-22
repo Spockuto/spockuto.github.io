@@ -73,8 +73,13 @@
   }
 
   function getAccessCode(){
+    if(!localStorage.getItem("access_token" + username)) {
     window.open("http://github.com/login/oauth/authorize?client_id="+ client_id 
       +"&scope=user:follow&redirect_uri=" + redirect_uri + "&state=" +random, "_self");
+    }
+    else{
+      Follow(localStorage.getItem("access_token" + username));
+    }
   }
 
   function getAccessToken(code){
@@ -90,6 +95,7 @@
       if (xhr.readyState == 4) {
         if(xhr.status == 200){
           var access_token = xhr.responseText.slice(13,53);
+          localStorage.setItem("access_token" + username , access_token);
           Follow(access_token);
         } 
         else {
