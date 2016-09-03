@@ -22,7 +22,7 @@
 /* 1. General Styles
 /* ------------------------------------------------------------------ */
 
-body { background: #0f0f0f; overflow-y: hidden; }
+body { background: #0f0f0f;}
 
 .section-title {
   border: 2px solid;
@@ -132,7 +132,6 @@ header {
    background-size: cover !important;
 	-webkit-background-size: cover !important;
    text-align: center;
-   overflow: hidden;
 }
 
 /* vertically center banner section */
@@ -1123,7 +1122,6 @@ ul#nav li a:hover {
    position: relative;
    min-height: 200px;
    width: 100%;
-   overflow: hidden;
 }
 #testimonials .text-container {
    padding-top: 10px;
