@@ -29,11 +29,15 @@ fileInput.addEventListener('change', function(e) {
 });
 
 $("#referesh").on('click', function() {
+   window.pensionSelected =  new Set();
+   window.personSelected  = new Set();
+   window.final = [];
    checkboxes.innerHTML = '';
    DisplayFields(window.data); 
 });
 
 $("#generate").on('click', function() {
+  window.final = [];
 	matchStrings();
 });
 
@@ -44,6 +48,14 @@ $(document).ready(function(e) {
 });
 
 function matchStrings(){
+  window.allRows = data.split(/\r?\n|\r/);
+  for (window.singleRow = 0; window.singleRow < window.allRows.length; window.singleRow++) {
+    window.allRows[window.singleRow] = window.allRows[window.singleRow].split(',');
+    if(window.singleRow != 0){
+    window.pension.add(window.allRows[window.singleRow][0]);
+    window.person.add(window.allRows[window.singleRow][1]);
+    }
+  }
 	var originalArray = window.allRows;
 	for ( var i = 0; i < originalArray.length; i++) {
   		originalArray[i] = originalArray[i][0] + ',' +originalArray[i][1];
@@ -56,7 +68,8 @@ function matchStrings(){
 			selected.add(value1 + ',' +value2)
 		});
 	});
-
+  console.log(selected);
+  console.log(original);
 	selected.forEach(function(value) {
 		if (original.has(value)){
 			var dict = new Object;
@@ -168,4 +181,4 @@ function createNewCheckboxPerson(id){
     return checkbox;
 }
 
-  
+
