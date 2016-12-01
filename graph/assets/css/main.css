@@ -1,10 +1,6 @@
 @import url(font-awesome.min.css);
 
-/*
-	Hyperspace by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
-*/
+
 
 /* Reset */
 
@@ -3232,25 +3228,26 @@
 		}
 
 		.wrapper.style1 {
-			background-color: #5e42a6;
+			background-color: #110D5C;
 		}
+/* #5e42a6;*/
 
 		.wrapper.style1-alt {
-			background-color: #493382;
+			background-color: #101D5C;
 		}
-
+/*#493382;*/
 		.wrapper.style2 {
-			background-color: #5052b5;
+			background-color: #101D5C;
 		}
-
+/*#5052b5*/
 		.wrapper.style2-alt {
 			background-color: #3e4094;
 		}
 
 		.wrapper.style3 {
-			background-color: #b74e91;
+			background-color: #111D5C;
 		}
-
+/*#b74e91*/
 		.wrapper.style3-alt {
 			background-color: #953d75;
 		}
@@ -3513,7 +3510,7 @@
 
 	#sidebar {
 		padding: 2.5em 2.5em 0.5em 2.5em ;
-		background: #312450;
+		background: #101D5C;
 		cursor: default;
 		height: 100vh;
 		left: 0;
@@ -3863,8 +3860,8 @@
 
 	#intro {
 		background-attachment: fixed;
-		background-image: url("images/intro.svg");
 		background-position: top right;
+		background-image: url('../images/intro.svg');
 		background-repeat: no-repeat;
 		background-size: 100% 100%;
 	}

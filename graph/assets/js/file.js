@@ -4,9 +4,9 @@ window.singleRow = '';
 window.rowCells = '';
 window.final = [];
 window.data = '';
+
 window.pension =  new Set();
 window.person  = new Set();
-
 window.pensionSelected =  new Set();
 window.personSelected  = new Set();
 
@@ -35,6 +35,12 @@ $("#referesh").on('click', function() {
 
 $("#generate").on('click', function() {
 	matchStrings();
+});
+
+$(document).ready(function(e) {
+    var $input = $('#refresh');
+
+    $input.val() == 'yes' ? location.reload(true) : $input.val('yes');
 });
 
 function matchStrings(){
@@ -120,10 +126,11 @@ function DisplayFields(data) {
   	window.person.add(window.allRows[window.singleRow][1]);
   	}
   }
+  if(window.pension){
  	var heading =  document.createElement("h3");
  	var headingContent = document.createTextNode("Pension");
  	heading.appendChild(headingContent);
- 	checkboxes.appendChild(heading);
+ 	checkboxes.appendChild(heading);}
 
 	window.pension.forEach(function(value) {
 		var description = document.createTextNode("\u00A0\u00A0\u00A0" + value + "\u00A0\u00A0\u00A0" );
@@ -131,11 +138,11 @@ function DisplayFields(data) {
 		checkboxes.appendChild(description)
    		
 	});
-
+  if(window.person){
 	var heading =  document.createElement("h3");
  	var headingContent = document.createTextNode("Person");
  	heading.appendChild(headingContent);
- 	checkboxes.appendChild(heading);
+ 	checkboxes.appendChild(heading);}
   		
 	window.person.forEach(function(value) {
 		var description = document.createTextNode("\u00A0\u00A0\u00A0" + value + "\u00A0\u00A0\u00A0");
@@ -162,4 +169,3 @@ function createNewCheckboxPerson(id){
 }
 
   
-
