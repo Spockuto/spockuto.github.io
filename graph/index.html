@@ -1,0 +1,91 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title> Dynamic Network Visualization</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+	</head>
+	<body>
+			<section id="sidebar">
+				<div class="inner">
+					<nav>
+						<ul>
+							<li><a href="#intro">Welcome</a></li>
+							<li><a href="#one">Upload CSV</a></li>
+							<li><a href="#two">Select Elements</a></li>
+							<li><a href="graph.html">View the Graph</a></li>
+						</ul>
+					</nav>
+				</div>
+			</section>
+
+			<div id="wrapper">
+					<section id="intro" class="wrapper style1 fullscreen fade-up">
+						<div class="inner">
+							<h1>Dynamic Network Visualization</h1>
+							<p>Just the thing you need.</p>
+						</div>
+					</section>
+
+				<!--  Upload CSV -->
+					<section id="one" class="wrapper style2 spotlights">
+						<section>
+							<div class="content">
+								<div class="inner">
+									<h2>Upload your CSV</h2>
+									<p>The following module is constructed for pension funds.  <br>
+									It asssumes you have two columns.<br>
+									<b> Pension / Person </b></p>
+									<ul class="actions">
+										<input type="file" id="fileInput">
+									</ul>
+								</div>
+							</div>
+						</section>
+
+				<!-- Generating Lists -->
+					<section id="two" class="wrapper style3 fade-up">
+						<div class="inner">
+							<h2>Select the elements</h2>
+								<center>
+									<input type="checkbox" id="selectAllPension"/> Select all Pension<br/>
+									<input type="checkbox"  id="selectAllPerson"/> Select all Person<br/>
+									<div id="checkboxes">	
+									</div>
+								</center><br>
+							<ul class="actions">
+								<li><a href="#" class="button submit" id="generate">Generate</a></li>
+								<li><a href="#two" class="button submit" id="referesh">Referesh</a></li>
+							</ul>
+						</div>
+					</section>
+			</div>
+
+			<!-- Footer -->
+			<footer id="footer" class="wrapper style1-alt">
+				<div class="inner">
+					<center>
+					<ul class="menu">
+						<li>Made with &hearts; by <a href="http://venkkateshsekar.me">Venkkatesh Sekar</a></li>
+					</ul>
+					</center>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/js/main.js"></script>
+			<script src="assets/js/file.js"></script>
+
+	</body>
+</html>
