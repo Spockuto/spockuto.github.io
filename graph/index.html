@@ -18,7 +18,7 @@
 						<ul>
 							<li><a href="#intro">Welcome</a></li>
 							<li><a href="#one">Upload CSV</a></li>
-							<li><a href="#two">Select Elements</a></li>
+							<li><a HREF="#two ">Select Elements</a></li>
 						</ul>
 					</nav>
 				</div>
@@ -37,13 +37,18 @@
 						<section>
 							<div class="content">
 								<div class="inner">
+									<h2>Are you an Administrator?</h2>
+									<label><input type="radio"  name="type" value="1"> Yes </label>
+									<label><input type="radio"  name="type" value="2"> No </label>
+									<div class="magicContent">
 									<h2>Upload your CSV</h2>
 									<p>The following module is constructed for pension funds.  <br>
 									It asssumes you have two columns.<br>
-									<b> Pension / Person </b></p>
+									<b> Source / Target </b></p>
 									<ul class="actions">
 										<input type="file" id="fileInput">
 									</ul>
+									</div>
 								</div>
 							</div>
 						</section>
@@ -53,14 +58,39 @@
 						<div class="inner">
 							<h2>Select the elements</h2>
 								<center>
-									<input type="checkbox" id="selectAllPension"/> Select all Pension<br/>
-									<input type="checkbox"  id="selectAllPerson"/> Select all Person<br/>
-									<div id="checkboxes">	
+									<div id="check">
+										    <FONT COLOR=Green>Go to:</FONT>	 <A HREF="#two" id="A" class="hlink">A</A>
+											<FONT COLOR=Green>|</FONT> <A HREF="#two" id="B" class="hlink">B</A>
+											<FONT COLOR=Green>|</FONT> <A HREF="#two" id="C" class="hlink">C</A>
+											<FONT COLOR=Green>|</FONT> <A HREF="#two" id="D" class="hlink">D</A>
+											<FONT COLOR=Green>|</FONT> <A HREF="#two" id="E" class="hlink">E</A>
+											<FONT COLOR=Green>|</FONT> <A HREF="#two" id="F" class="hlink">F</A>
+											<FONT COLOR=Green>|</FONT> <A HREF="#two" id="G" class="hlink">G</A>
+											<FONT COLOR=Green>|</FONT> <A HREF="#two" id="H" class="hlink">H</A>
+											<FONT COLOR=Green>|</FONT> <A HREF="#two" id="I" class="hlink">I</A>
+											<FONT COLOR=Green>|</FONT> <A HREF="#two" id="J" class="hlink">J</A>
+											<FONT COLOR=Green>|</FONT> <A HREF="#two" id="K" class="hlink">K</A>
+											<FONT COLOR=Green>|</FONT> <A HREF="#two" id="L" class="hlink">L</A>
+											<FONT COLOR=Green>|</FONT> <A HREF="#two" id="M" class="hlink">M</A>
+											<FONT COLOR=Green>|</FONT> <A HREF="#two" id="N" class="hlink">N</A>
+											<FONT COLOR=Green>|</FONT> <A HREF="#two" id="O" class="hlink">O</A>
+											<FONT COLOR=Green>|</FONT> <A HREF="#two" id="P" class="hlink">P</A>
+											<FONT COLOR=Green>|</FONT> <A HREF="#two" id="Q" class="hlink">Q</A>
+											<FONT COLOR=Green>|</FONT> <A HREF="#two" id="R" class="hlink">R</A>
+											<FONT COLOR=Green>|</FONT> <A HREF="#two" id="S" class="hlink">S</A>
+											<FONT COLOR=Green>|</FONT> <A HREF="#two" id="T" class="hlink">T</A>
+											<FONT COLOR=Green>|</FONT> <A HREF="#two" id="U" class="hlink">U</A>
+											<FONT COLOR=Green>|</FONT> <A HREF="#two" id="V" class="hlink">V</A>
+											<FONT COLOR=Green>|</FONT> <A HREF="#two" id="W" class="hlink">W</A>
+											<FONT COLOR=Green>|</FONT> <A HREF="#two" id="X" class="hlink">X</A>
+											<FONT COLOR=Green>|</FONT> <A HREF="#two" id="Y" class="hlink">Y</A>
+											<FONT COLOR=Green>|</FONT> <A HREF="#two" id="Z" class="hlink">Z</A>
 									</div>
+									<div id="checkboxes"></div>
 								</center><br>
 							<ul class="actions">
-								<li><a href="http://venkkateshsekar.me/graph/graph.html" class="button submit" id="generate" onclick="window.open(this.href, this.href); return false">Generate</a></li>
-								<li><a href="#two" class="button submit" id="referesh">Referesh</a></li>
+								<li><a href="graph.html" class="button submit" id="generate" onclick="window.open(this.href, this.href); return false">Generate</a></li>
+								<li><a HREF="#two" class="button submit" id="referesh">Referesh</a></li>
 							</ul>
 						</div>
 					</section>
@@ -83,7 +113,7 @@
 			<script src="assets/js/jquery.scrolly.min.js"></script>
 			<script src="assets/js/skel.min.js"></script>
 			<script src="assets/js/util.js"></script>
-			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/js/jquery.csv.min.js"></script>
 			<script src="assets/js/main.js"></script>
 			<script src="assets/js/file.js"></script>
 

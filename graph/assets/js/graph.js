@@ -1,11 +1,5 @@
-var links = JSON.parse(localStorage.getItem('graphContent'));
-var nodes = {};
-
-// Compute the distinct nodes from the links.
-links.forEach(function(link) {
-  link.source = nodes[link.source] || (nodes[link.source] = {name: link.source});
-  link.target = nodes[link.target] || (nodes[link.target] = {name: link.target});
-});
+var links = JSON.parse(localStorage.getItem('graphContent'))['links'];
+var nodes = JSON.parse(localStorage.getItem('graphContent'))['nodes'];
 
 var width = 1320,
     height = 615;
@@ -42,18 +36,20 @@ svg.append("defs").selectAll("marker")
 var path = svg.append("g").selectAll("path")
     .data(force.links())
   .enter().append("path")
-    .attr("class", function(d) { return "link " + d.type; })
-    .attr("marker-end", function(d) { return "url(#" + d.type + ")"; });
+    .attr("class", function(d) { return "link"; })
+    .attr("marker-end", function(d) { return "url(#" + ")"; });
 
 var circle = svg.append("g").selectAll("circle")
     .data(force.nodes())
   .enter().append("circle")
-    .attr("r", 12)
+    .style("fill", function(d) { return color(parseInt(d.color) + 5); })
+    .attr("r", function(d) { return parseInt(d.radius) + 10;  })
+    .on("click", function(d) { window.open(d.url); })
     .call(force.drag);
 
 var text = svg.append("g").selectAll("text")
     .data(force.nodes())
-  .enter().append("text")
+    .enter().append("text")
     .attr("x", 8)
     .attr("y", ".31em")
     .text(function(d) { return d.name; });

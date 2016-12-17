@@ -1,14 +1,17 @@
-// Reads files and sends content for display
+1// Reads files and sends content for display
 window.allRows = '';
 window.singleRow = '';
 window.rowCells = '';
 window.final = [];
 window.data = '';
 
-window.pension =  new Set();
-window.person  = new Set();
-window.pensionSelected =  new Set();
-window.personSelected  = new Set();
+window.source =  new Set();
+window.target  = new Set();
+window.sourceSelected =  new Set();
+window.targetSelected  = new Set();
+window.dictionary = {};
+window.content = [];
+window.data2 = [];
 
 var fileInput = document.getElementById('fileInput');
 var checkboxes = document.getElementById('checkboxes');
@@ -18,7 +21,6 @@ fileInput.addEventListener('change', function(e) {
 	if (file.type.match(textType)) {
 		var reader = new FileReader();
 		reader.onload = function(e) {
-			DisplayFields(reader.result)
 			window.data = reader.result;
 		}
 		reader.readAsText(file);	
@@ -28,12 +30,34 @@ fileInput.addEventListener('change', function(e) {
 	}
 });
 
+
+$(document).ready(function() {
+  $.ajax({
+        type: "GET",
+        url: "sample1.txt",
+        dataType: "text",
+        success: function(tempData) {
+        window.dictionary.Fund = new Set();
+        window.dictionary.Organ = new Set();
+        window.dictionary.Name = new Set();
+        window.dictionary.Company = new Set();
+
+        window.allRows = $.csv.toArrays(tempData);
+        window.content = window.allRows;
+          for (window.singleRow = 0; window.singleRow < window.allRows.length; window.singleRow++) {
+              if(window.singleRow != 0){
+                   window.dictionary[window.allRows[window.singleRow][1]].add(window.allRows[window.singleRow][0]);               
+            }
+          }
+        }
+    });
+});
+
 $("#referesh").on('click', function() {
-   window.pensionSelected =  new Set();
-   window.personSelected  = new Set();
+   window.sourceSelected =  new Set();
+   window.targetSelected  = new Set();
    window.final = [];
    checkboxes.innerHTML = '';
-   DisplayFields(window.data); 
 });
 
 $("#generate").on('click', function() {
@@ -41,144 +65,306 @@ $("#generate").on('click', function() {
 	matchStrings();
 });
 
+$('input[name="type"]').on('change', function(){
+  $('.magicContent').toggle(+this.value === 1 && this.checked);
+}).change();
+
+$('a.hlink').click(function(){
+  DisplayFields(window.data , $(this).attr('id'));
+});
+
 $(document).ready(function(e) {
     var $input = $('#refresh');
-
     $input.val() == 'yes' ? location.reload(true) : $input.val('yes');
+});  
+
+$("#checkboxes").on('change', 'input:checkbox',function() {
+            if($(this).is(":checked")){
+              if(this.name == "source")
+                window.sourceSelected.add(this.id);
+              else if(this.name == "target")
+                window.targetSelected.add(this.id);   
+            } 
+            else{
+              if(this.name == "source")
+                window.sourceSelected.delete(this.id);
+              else if(this.name == "target")
+                window.targetSelected.delete(this.id);  
+            }
 });
 
 function matchStrings(){
-  window.allRows = data.split(/\r?\n|\r/);
+  
+  window.allRows = window.data.split(/\r?\n|\r/);
+  
   for (window.singleRow = 0; window.singleRow < window.allRows.length; window.singleRow++) {
     window.allRows[window.singleRow] = window.allRows[window.singleRow].split(',');
     if(window.singleRow != 0){
-    window.pension.add(window.allRows[window.singleRow][0]);
-    window.person.add(window.allRows[window.singleRow][1]);
+    window.source.add(window.allRows[window.singleRow][0]);
+    window.target.add(window.allRows[window.singleRow][1]);
     }
   }
 	var originalArray = window.allRows;
 	for ( var i = 0; i < originalArray.length; i++) {
   		originalArray[i] = originalArray[i][0] + ',' +originalArray[i][1];
   	}
-  	var original = new Set(originalArray);
+  var original = new Set(originalArray);
+  var selected = new Set();
 
-  	var selected = new Set();
-	window.pensionSelected.forEach(function(value1) {
-		window.personSelected.forEach(function(value2) {
+	window.sourceSelected.forEach(function(value1) {
+		window.targetSelected.forEach(function(value2) {
 			selected.add(value1 + ',' +value2)
 		});
 	});
-  console.log(selected);
-  console.log(original);
-	selected.forEach(function(value) {
-		if (original.has(value)){
+
+  var names = window.content.map(function(value,index){ return value[0]});
+  window.sourceSelected.forEach(function(value){
+    var index = names.indexOf(value);
+    var dict = new Object;
+    dict['name'] = window.content[index]['0'];
+    dict['color'] = window.content[index]['2'];
+    dict['radius'] = window.content[index]['3'];
+    dict['url'] = window.content[index]['4'];
+    window.data2.push(dict);
+  });
+  window.targetSelected.forEach(function(value){
+    var index = names.indexOf(value);
+    var dict = new Object;
+    dict['name'] = window.content[index]['0'];
+    dict['color'] = window.content[index]['2'];
+    dict['radius'] = window.content[index]['3'];
+    dict['url'] = window.content[index]['4'];
+    window.data2.push(dict);
+  });
+
+  var names2 = window.data2.map(function(value,index){ return value['name']});
+
+  selected.forEach(function(value) {
+  if (original.has(value)){
 			var dict = new Object;
-			dict['source'] = value.split(',')[0];
-			dict['target'] = value.split(',')[1];
+			dict['source'] = names2.indexOf(value.split(',')[0]);
+			dict['target'] = names2.indexOf(value.split(',')[1]);
 			dict['group'] = '1';
 			window.final.push(dict);}
 	});
-	localStorage.setItem("graphContent",JSON.stringify(window.final));
+
+  var dict = new Object;
+  dict['links'] = window.final;
+  dict['nodes'] = window.data2;
+  console.log(dict);
+	localStorage.setItem("graphContent",JSON.stringify(dict));
 }
+ 
+function DisplayFields(data , character) {
+  
+  checkboxes.innerHTML = '';
 
-function recordSelection(){
-	$('input:checkbox').change(function () {
-            if($(this).is(":checked")){
-            	if(this.name == "pension")
-            		window.pensionSelected.add(this.id);
-            	else if(this.name == "person")
-            		window.personSelected.add(this.id);  
-            	else if (this.id == "selectAllPension" )  {
-            		window.pension.forEach(function(value) {
-            			window.pensionSelected.add(value);
-            		});       
-
-            	}
-            	else if (this.id == "selectAllPerson" )  {
-            		window.person.forEach(function(value) {
-            			window.personSelected.add(value);
-            		});       
-            	}
-            } 
-
-            else{
-            	
-            	if(this.name == "pension")
-            		window.pensionSelected.delete(this.id);
-            	else if(this.name == "person")
-            		window.personSelected.delete(this.id);  
-
-            	else if (this.id == "selectAllPension" )  {
-            		window.pension.forEach(function(value) {
-            			window.pensionSelected.delete(value);
-            		}); 
-            		checkbox = document.getElementsByName('pension');
-  					for(var i=0, n=checkbox.length;i<n;i++) {
-    					checkbox[i].checked = false; 
-    				}
-            	}
-            	else if (this.id == "selectAllPerson" )  {
-            		window.person.forEach(function(value) {
-            			window.personSelected.delete(value);
-            		});  
-            		checkbox = document.getElementsByName('person');
-  					for(var i=0, n=checkbox.length;i<n;i++) {
-    					checkbox[i].checked = false;
-					}     
-            	}   
-            }
-	 });
-}
-
-function DisplayFields(data) {
+  var sourceFund = new Set();
+  var sourceOrgan = new Set();
+  var sourcePerson = new Set();
+  var sourceCompany = new Set();
+  var targetFund = new Set();
+  var targetOrgan = new Set();
+  var targetPerson = new Set();
+  var targetCompany = new Set();
+  
   window.allRows = data.split(/\r?\n|\r/);
   for (window.singleRow = 0; window.singleRow < window.allRows.length; window.singleRow++) {
   	window.allRows[window.singleRow] = window.allRows[window.singleRow].split(',');
   	if(window.singleRow != 0){
-  	window.pension.add(window.allRows[window.singleRow][0]);
-  	window.person.add(window.allRows[window.singleRow][1]);
+  	window.source.add(window.allRows[window.singleRow][0]);
+  	window.target.add(window.allRows[window.singleRow][1]);
   	}
   }
-  if(window.pension){
- 	var heading =  document.createElement("h3");
- 	var headingContent = document.createTextNode("Pension");
- 	heading.appendChild(headingContent);
- 	checkboxes.appendChild(heading);}
+  if(window.source){
+ 	
+    var heading =  document.createElement("h2");
+ 	  var headingContent = document.createTextNode("Source");
+ 	  heading.appendChild(headingContent);
+ 	  checkboxes.appendChild(heading);
+ }
 
-	window.pension.forEach(function(value) {
-		var description = document.createTextNode("\u00A0\u00A0\u00A0" + value + "\u00A0\u00A0\u00A0" );
-		checkboxes.appendChild(createNewCheckboxPension(value));
-		checkboxes.appendChild(description)
-   		
+  window.source.forEach(function(value){
+    if(window.dictionary.Fund.has(value))
+      sourceFund.add(value);
+     else if(window.dictionary.Organ.has(value))
+      sourceOrgan.add(value);
+     else if(window.dictionary.Company.has(value))
+      sourceCompany(value);
+     else if(window.dictionary.Name.has(value))
+      sourcePerson.add(value);
+  });	
+
+  window.target.forEach(function(value){
+      if(window.dictionary.Fund.has(value))
+      targetFund.add(value);
+     else if(window.dictionary.Organ.has(value))
+      targetOrgan.add(value);
+     else if(window.dictionary.Company.has(value))
+      targetCompany.add(value);
+     else if(window.dictionary.Name.has(value))
+      targetPerson.add(value);
+
+  });
+
+    var heading =  document.createElement("h4");
+    var headingContent = document.createTextNode("Fund");
+    heading.appendChild(headingContent);
+    checkboxes.appendChild(heading);
+
+    sourceFund.forEach(function(value) {  
+    if(value.startsWith(character)){
+		  var description = document.createTextNode("\u00A0\u00A0\u00A0" + value + "\u00A0\u00A0\u00A0" );
+		  checkboxes.appendChild(createNewCheckboxSource(value));
+		  checkboxes.appendChild(description)
+      
+      if(window.sourceSelected.has(value)){
+        document.getElementById(value).checked = true ;
+      }
+    }		
 	});
-  if(window.person){
-	var heading =  document.createElement("h3");
- 	var headingContent = document.createTextNode("Person");
- 	heading.appendChild(headingContent);
- 	checkboxes.appendChild(heading);}
+
+    var heading =  document.createElement("h4");
+    var headingContent = document.createTextNode("Organ");
+    heading.appendChild(headingContent);
+    checkboxes.appendChild(heading);
+
+  sourceOrgan.forEach(function(value) {       
+    if(value.startsWith(character)){
+      var description = document.createTextNode("\u00A0\u00A0\u00A0" + value + "\u00A0\u00A0\u00A0" );
+      checkboxes.appendChild(createNewCheckboxSource(value));
+      checkboxes.appendChild(description)
+      
+      if(window.sourceSelected.has(value)){
+        document.getElementById(value).checked = true ;
+      }
+    }   
+  });
+
+
+    var heading =  document.createElement("h4");
+    var headingContent = document.createTextNode("Person");
+    heading.appendChild(headingContent);
+    checkboxes.appendChild(heading);
+  
+  sourcePerson.forEach(function(value) {   
+    if(value.startsWith(character)){
+      var description = document.createTextNode("\u00A0\u00A0\u00A0" + value + "\u00A0\u00A0\u00A0" );
+      checkboxes.appendChild(createNewCheckboxSource(value));
+      checkboxes.appendChild(description)
+      
+      if(window.sourceSelected.has(value)){
+        document.getElementById(value).checked = true ;
+      }
+    }   
+  });
+
+
+    var heading =  document.createElement("h4");
+    var headingContent = document.createTextNode("Company");
+    heading.appendChild(headingContent);
+    checkboxes.appendChild(heading);
+
+  sourceCompany.forEach(function(value) {   
+    if(value.startsWith(character)){
+      var description = document.createTextNode("\u00A0\u00A0\u00A0" + value + "\u00A0\u00A0\u00A0" );
+      checkboxes.appendChild(createNewCheckboxSource(value));
+      checkboxes.appendChild(description)
+      
+      if(window.sourceSelected.has(value)){
+        document.getElementById(value).checked = true ;
+      }
+    }   
+  });
+
+  if(window.target){
+	   var heading =  document.createElement("h2");
+ 	   var headingContent = document.createTextNode("Target");
+ 	   heading.appendChild(headingContent);
+ 	   checkboxes.appendChild(heading);
+   }
+
+    var heading =  document.createElement("h4");
+    var headingContent = document.createTextNode("Fund");
+    heading.appendChild(headingContent);
+    checkboxes.appendChild(heading);
   		
-	window.person.forEach(function(value) {
+	 targetFund.forEach(function(value) {
+    if(value.startsWith(character)){
 		var description = document.createTextNode("\u00A0\u00A0\u00A0" + value + "\u00A0\u00A0\u00A0");
-		checkboxes.appendChild(createNewCheckboxPerson(value));
+		checkboxes.appendChild(createNewCheckboxTarget(value));
 		checkboxes.appendChild(description);
+    if(window.targetSelected.has(value)){
+      document.getElementById(value).checked = true ;
+    }
+  }
 	});
-	recordSelection();
+
+   var heading =  document.createElement("h4");
+    var headingContent = document.createTextNode("Organ");
+    heading.appendChild(headingContent);
+    checkboxes.appendChild(heading);
+
+
+    targetOrgan.forEach(function(value) {
+    if(value.startsWith(character)){
+    var description = document.createTextNode("\u00A0\u00A0\u00A0" + value + "\u00A0\u00A0\u00A0");
+    checkboxes.appendChild(createNewCheckboxTarget(value));
+    checkboxes.appendChild(description);
+    if(window.targetSelected.has(value)){
+      document.getElementById(value).checked = true ;
+    }
+  }
+  });
+
+    var heading =  document.createElement("h4");
+    var headingContent = document.createTextNode("Person");
+    heading.appendChild(headingContent);
+    checkboxes.appendChild(heading);
+
+
+    targetPerson.forEach(function(value) {
+    if(value.startsWith(character)){
+    var description = document.createTextNode("\u00A0\u00A0\u00A0" + value + "\u00A0\u00A0\u00A0");
+    checkboxes.appendChild(createNewCheckboxTarget(value));
+    checkboxes.appendChild(description);
+    if(window.targetSelected.has(value)){
+      document.getElementById(value).checked = true ;
+    }
+  }
+  });
+
+    var heading =  document.createElement("h4");
+    var headingContent = document.createTextNode("Company");
+    heading.appendChild(headingContent);
+    checkboxes.appendChild(heading);
+
+    targetCompany.forEach(function(value) {
+  
+    if(value.startsWith(character)){
+    var description = document.createTextNode("\u00A0\u00A0\u00A0" + value + "\u00A0\u00A0\u00A0");
+    checkboxes.appendChild(createNewCheckboxTarget(value));
+    checkboxes.appendChild(description);
+    if(window.targetSelected.has(value)){
+      document.getElementById(value).checked = true ;
+    }
+  }
+  });
+
 }
 
-function createNewCheckboxPension(id){
+function createNewCheckboxSource(id){
     var checkbox = document.createElement('input'); 
     checkbox.type= 'checkbox';
-    checkbox.name = 'pension';
+    checkbox.name = 'source';
    	checkbox.id = id;
     return checkbox;
 }
 
-function createNewCheckboxPerson(id){
+function createNewCheckboxTarget(id){
     var checkbox = document.createElement('input'); 
     checkbox.type= 'checkbox';
-    checkbox.name = 'person';
+    checkbox.name = 'target';
    	checkbox.id = id;
     return checkbox;
 }
-
-
