@@ -1637,7 +1637,7 @@
 	body, input, select, textarea {
 		color: rgba(255, 255, 255, 0.55);
 		font-family: Arial, Helvetica, sans-serif;
-		font-size: 16.5pt;
+		font-size: 13.5pt;
 		font-weight: normal;
 		line-height: 1.75;
 	}
@@ -2331,6 +2331,7 @@
 	input[type="password"],
 	input[type="email"],
 	input[type="tel"],
+	input[type="number"],
 	select,
 	textarea {
 		-moz-appearance: none;
@@ -2342,16 +2343,17 @@
 		border: none;
 		border: solid 1px rgba(255, 255, 255, 0.15);
 		color: inherit;
-		display: block;
+		display: inline;
 		outline: 0;
 		padding: 0 1em;
 		text-decoration: none;
-		width: 100%;
+		width: 12%;
 	}
 
 		input[type="text"]:invalid,
 		input[type="password"]:invalid,
 		input[type="email"]:invalid,
+		input[type="number"]:invalid,
 		input[type="tel"]:invalid,
 		select:invalid,
 		textarea:invalid {
@@ -2362,6 +2364,7 @@
 		input[type="password"]:focus,
 		input[type="email"]:focus,
 		input[type="tel"]:focus,
+		input[type="number"]:focus,
 		select:focus,
 		textarea:focus {
 			border-color: #ffffff;
@@ -2409,6 +2412,7 @@
 	input[type="text"],
 	input[type="password"],
 	input[type="email"],
+	input[type="number"],
 	select {
 		height: 2.75em;
 	}

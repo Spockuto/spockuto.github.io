@@ -13,6 +13,8 @@ window.dictionary = {};
 window.content = [];
 window.data2 = [];
 
+window.doc = 0;
+
 var fileInput = document.getElementById('fileInput');
 var checkboxes = document.getElementById('checkboxes');
 fileInput.addEventListener('change', function(e) {
@@ -57,7 +59,12 @@ $("#referesh").on('click', function() {
    window.sourceSelected =  new Set();
    window.targetSelected  = new Set();
    window.final = [];
+   window.data2 = [];
    checkboxes.innerHTML = '';
+});
+
+$("#setint").on('click', function(){
+  window.doc = document.getElementById("doc").value;
 });
 
 $("#generate").on('click', function() {
@@ -96,9 +103,11 @@ $("#checkboxes").on('change', 'input:checkbox',function() {
 function matchStrings(){
   
   window.allRows = window.data.split(/\r?\n|\r/);
-  
+  var sourceTarget = [];
+
   for (window.singleRow = 0; window.singleRow < window.allRows.length; window.singleRow++) {
     window.allRows[window.singleRow] = window.allRows[window.singleRow].split(',');
+    sourceTarget.push(window.allRows[window.singleRow]);
     if(window.singleRow != 0){
     window.source.add(window.allRows[window.singleRow][0]);
     window.target.add(window.allRows[window.singleRow][1]);
@@ -108,8 +117,60 @@ function matchStrings(){
 	for ( var i = 0; i < originalArray.length; i++) {
   		originalArray[i] = originalArray[i][0] + ',' +originalArray[i][1];
   	}
+  
   var original = new Set(originalArray);
   var selected = new Set();
+  var tempSourceTarget = new Set();
+  var iterator = new Set();
+  if(window.sourceSelected.size == 2 || window.targetSelected.size == 2 || window.targetSelected + window.sourceSelected == 2)
+    window.doc = window.doc / 2 ;
+  
+  
+  window.targetSelected.forEach(function(value){
+      iterator.add(value);
+  });
+  window.sourceSelected.forEach(function(value){
+      iterator.add(value);
+  });
+  
+  if(window.doc > 0){
+    for(var step = 0; step < parseInt(window.doc); step++){
+      iterator.forEach(function(iteratorValue){
+        window.sourceSelected.add(iteratorValue);
+        var filter = sourceTarget.filter(function(value,index){ 
+          if(iteratorValue == value[0])
+            return value[1];
+        });    
+        var finalFilter = filter.map(function(value,index){ return value[1]});    
+        finalFilter.forEach(function(value){  
+          window.targetSelected.add(value);
+          tempSourceTarget.add(value);
+        });
+      });
+      iterator = tempSourceTarget;
+      tempSourceTarget = new Set();
+    }
+  }
+
+  var sourceTemp = new Set();
+  var targetTemp = new Set();
+
+  window.sourceSelected.forEach(function(value){
+    if(!window.source.has(value))
+      sourceTemp.add(value);
+  });
+  window.targetSelected.forEach(function(value){
+    if(!window.target.has(value))
+      targetTemp.add(value);
+  });
+  
+  sourceTemp.forEach(function(value){
+    window.sourceSelected.delete(value);
+  });
+  targetTemp.forEach(function(value){
+    window.targetSelected.delete(value);
+  });
+
 
 	window.sourceSelected.forEach(function(value1) {
 		window.targetSelected.forEach(function(value2) {
@@ -118,27 +179,34 @@ function matchStrings(){
 	});
 
   var names = window.content.map(function(value,index){ return value[0]});
-  window.sourceSelected.forEach(function(value){
-    var index = names.indexOf(value);
-    var dict = new Object;
-    dict['name'] = window.content[index]['0'];
-    dict['color'] = window.content[index]['2'];
-    dict['radius'] = window.content[index]['3'];
-    dict['url'] = window.content[index]['4'];
-    window.data2.push(dict);
+  var checker = new Set(window.data2.map(function(value,index){ return value['name']}));
+  
+  window.sourceSelected.forEach(function(value){ 
+    if(!checker.has(value)){
+      var index = names.indexOf(value);
+      var dict = new Object;
+      dict['name'] = window.content[index]['0'];
+      dict['color'] = window.content[index]['2'];
+      dict['radius'] = window.content[index]['3'];
+      dict['url'] = window.content[index]['4'];
+      window.data2.push(dict);
+      checker.add(window.content[index]['0']);
+    }
   });
   window.targetSelected.forEach(function(value){
-    var index = names.indexOf(value);
-    var dict = new Object;
-    dict['name'] = window.content[index]['0'];
-    dict['color'] = window.content[index]['2'];
-    dict['radius'] = window.content[index]['3'];
-    dict['url'] = window.content[index]['4'];
-    window.data2.push(dict);
+    if(!checker.has(value)){
+      var index = names.indexOf(value);
+      var dict = new Object;
+      dict['name'] = window.content[index]['0'];
+      dict['color'] = window.content[index]['2'];
+      dict['radius'] = window.content[index]['3'];
+      dict['url'] = window.content[index]['4'];
+      window.data2.push(dict);
+      checker.add(window.content[index]['0']);
+    }
   });
 
   var names2 = window.data2.map(function(value,index){ return value['name']});
-
   selected.forEach(function(value) {
   if (original.has(value)){
 			var dict = new Object;
