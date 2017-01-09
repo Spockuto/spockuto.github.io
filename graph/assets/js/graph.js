@@ -15,23 +15,18 @@ var force = d3.layout.force()
     .on("tick", tick)
     .start();
 
+var zoom = d3.behavior.zoom()
+  .scaleExtent([1, 10])
+  .on("zoom", zoomed);
+
 var svg = d3.select("body").append("svg")
     .attr("width", width)
-    .attr("height", height);
+    .attr("height", height)
+    .call(zoom)
+    .append('svg:g');
 
 // Per-type markers, as they don't inherit styles.
-svg.append("defs").selectAll("marker")
-    .data(["suit", "licensing", "resolved"])
-  .enter().append("marker")
-    .attr("id", function(d) { return d; })
-    .attr("viewBox", "0 -5 10 10")
-    .attr("refX", 15)
-    .attr("refY", -1.5)
-    .attr("markerWidth", 6)
-    .attr("markerHeight", 6)
-    .attr("orient", "auto")
-  .append("path")
-    .attr("d", "M0,-5L10,0L0,5");
+
 
 var path = svg.append("g").selectAll("path")
     .data(force.links())
@@ -46,6 +41,28 @@ var circle = svg.append("g").selectAll("circle")
     .attr("r", function(d) { return parseInt(d.radius) + 10;  })
     .on("click", function(d) { window.open(d.url); })
     .call(force.drag);
+
+function zoomed() {
+  svg.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
+}
+
+function dragstarted(d) {
+  d3.event.sourceEvent.stopPropagation();
+
+  d3.select(this).classed("dragging", true);
+  force.start();
+}
+
+function dragged(d) {
+
+  d3.select(this).attr("cx", d.x = d3.event.x).attr("cy", d.y = d3.event.y);
+
+}
+
+function dragended(d) {
+
+  d3.select(this).classed("dragging", false);
+}
 
 var text = svg.append("g").selectAll("text")
     .data(force.nodes())
@@ -71,3 +88,18 @@ function linkArc(d) {
 function transform(d) {
   return "translate(" + d.x + "," + d.y + ")";
 }
+
+force.drag().on("dragstart", function() { d3.event.sourceEvent.stopPropagation(); });
+
+svg.append("defs").selectAll("marker")
+    .data(["suit", "licensing", "resolved"])
+  .enter().append("marker")
+    .attr("id", function(d) { return d; })
+    .attr("viewBox", "0 -5 10 10")
+    .attr("refX", 15)
+    .attr("refY", -1.5)
+    .attr("markerWidth", 6)
+    .attr("markerHeight", 6)
+    .attr("orient", "auto")
+  .append("path")
+    .attr("d", "M0,-5L10,0L0,5");
