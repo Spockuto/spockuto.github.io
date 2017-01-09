@@ -12,6 +12,7 @@ window.targetSelected  = new Set();
 window.dictionary = {};
 window.content = [];
 window.data2 = [];
+window.set = new Set();
 
 window.doc = 0;
 
@@ -78,6 +79,14 @@ $('input[name="type"]').on('change', function(){
 
 $('a.hlink').click(function(){
   DisplayFields(window.data , $(this).attr('id'));
+});
+
+$('input[type=checkbox][name=types]').change(function() {
+  if(window.set.has(this.value))
+      window.set.delete(this.value);
+  else
+    window.set.add(this.value);
+      
 });
 
 $(document).ready(function(e) {
@@ -184,6 +193,7 @@ function matchStrings(){
   window.sourceSelected.forEach(function(value){ 
     if(!checker.has(value)){
       var index = names.indexOf(value);
+      if(!window.set.has(window.content[index]['2'])){
       var dict = new Object;
       dict['name'] = window.content[index]['0'];
       dict['color'] = window.content[index]['2'];
@@ -191,11 +201,13 @@ function matchStrings(){
       dict['url'] = window.content[index]['4'];
       window.data2.push(dict);
       checker.add(window.content[index]['0']);
+      }
     }
   });
   window.targetSelected.forEach(function(value){
     if(!checker.has(value)){
       var index = names.indexOf(value);
+      if(!window.set.has(window.content[index]['2'])){
       var dict = new Object;
       dict['name'] = window.content[index]['0'];
       dict['color'] = window.content[index]['2'];
@@ -203,12 +215,14 @@ function matchStrings(){
       dict['url'] = window.content[index]['4'];
       window.data2.push(dict);
       checker.add(window.content[index]['0']);
+      }
+
     }
   });
 
   var names2 = window.data2.map(function(value,index){ return value['name']});
   selected.forEach(function(value) {
-  if (original.has(value)){
+  if (original.has(value) && names2.indexOf(value.split(',')[0]) >= 0 && names2.indexOf(value.split(',')[1]) >= 0){
 			var dict = new Object;
 			dict['source'] = names2.indexOf(value.split(',')[0]);
 			dict['target'] = names2.indexOf(value.split(',')[1]);
