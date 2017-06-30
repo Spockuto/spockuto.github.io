@@ -59,10 +59,8 @@ TOC :
    }
    header .banner-text h3 {
       font: 17px/1.9em 'Raleway', serif;
-      width: 80%;
    }
    header .banner-text hr {
-      width: 65%;
       margin: 12px auto;
    }
    /* m-nav */
@@ -219,7 +217,6 @@ TOC :
    header .banner-text h1 { font: 68px/1.1em 'Open Sans', sans-serif; }
    header .banner-text h3 {
       font: 16px/1.9em 'Raleway', serif;
-      width: 85%;
    }
    header .banner-text hr {
       width: 80%;
@@ -416,7 +413,6 @@ TOC :
    }
    header .banner-text h3 {
       font: 14px/1.9em 'Raleway', sans-serif;
-      width: 90%;
    }
   
    /* header social links */

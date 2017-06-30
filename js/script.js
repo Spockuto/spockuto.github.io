@@ -1,8 +1,12 @@
-/*-----------------------------------------------------------------------------------
-/*
-/* Script for Resume
-/*
------------------------------------------------------------------------------------*/
+
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-101909389-1', 'auto');
+  ga('send', 'pageview');
+
 
 /*----------------------------------------------------*/
 /* Preloader
@@ -176,44 +180,8 @@ function parallax() {
 
 
 /*----------------------------------------------------*/
-/*  Owl Carousel
-/*----------------------------------------------------*/
-
-
-    $(document).ready(function() {
-     
-    $("#testimonial-slides").owlCarousel({
-     
-    navigation : false, // Show next and prev buttons
-    slideSpeed : 300,
-    paginationSpeed : 400,
-    singleItem:true
-     
-    // "singleItem:true" is a shortcut for:
-    // items : 1,
-    // itemsDesktop : false,
-    // itemsDesktopSmall : false,
-    // itemsTablet: false,
-    // itemsMobile : false
-     
-    });
-     
-    });
-
-
-/*----------------------------------------------------*/
 /*  Google Map
 ------------------------------------------------------*/
-
-    // main directions
-      map = new GMaps({
-        el: '#map', lat: 23.790223, lng: 90.414036, zoom: 13, zoomControl : true, 
-        zoomControlOpt: { style : 'SMALL', position: 'TOP_LEFT' }, panControl : false, scrollwheel: false
-      });
-    // add address markers
-    map.addMarker({ lat: 23.790223, lng: 90.414036, title: 'BD InfoSys',
-      infoWindow: { content: '<p>Building # 2, Plot # 111, Road # 35, Gulshan - 2, Dhaka</p>' } });
-
 /*----------------------------------------------------*/
 /*	contact form
 ------------------------------------------------------*/
