@@ -45,6 +45,15 @@ TOC :
 
 
 }
+@media only screen and (min-width: 600px) {
+  ul li{
+  display: inline;
+  list-style: circle;
+}
+}
+@media only screen and (max-width: 600px) {
+ul { list-style: none outside; }
+}
 
 /* screenwidth less than 900px
 --------------------------------------------------------------------- */

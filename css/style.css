@@ -23,6 +23,10 @@
 /* ------------------------------------------------------------------ */
 
 body { background: #0f0f0f;}
+ul{
+  font-size: 20px;
+  
+}
 
 .section-title {
   border: 1px solid;
@@ -170,7 +174,7 @@ header .banner-text h3 {
    font-family: 'Raleway', sans-serif;
    color: #FFFFFF;
    margin: 0 auto;
-   width: 70%;
+   width: 80%;
 }
 header .banner-text h3 span,
 header .banner-text h3 a {
