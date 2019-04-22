@@ -19,6 +19,16 @@ var handleSuccess = function(stream) {
     //canvasCtx.shadowBlur = 10;
     //canvasCtx.shadowColor = "black";
 
+    var radiansC;
+    var maxCap;
+    if(WIDTH < 768){
+        radiusC = 100;
+        maxCap = 130;
+    }
+    else {
+        radiusC = 150;
+        maxCap = 200;
+    }
      
     function draw() {
 
@@ -27,7 +37,7 @@ var handleSuccess = function(stream) {
     	canvasCtx.clearRect(0, 0, WIDTH, HEIGHT);
     	canvasCtx.translate(WIDTH / 2, HEIGHT / 2);
 
-    	var radius = 150 + Math.floor(dataArray[1]) * 0.25;    	
+    	var radius = radiusC + Math.floor(dataArray[1]) * 0.25;    	
     	var barHeight;
     	var barWidth = ( 2 * Math.PI * radius ) / bufferLength;
     	var radians = (2 * Math.PI ) / bufferLength;
