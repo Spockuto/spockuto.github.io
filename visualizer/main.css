@@ -1,86 +1,80 @@
 @font-face {
-	font-family: GOT;
-	src: url('Game of Thrones.ttf');
+    font-family: open-sans;
+    src: url(OpenSans-Regular.ttf);
+    weight: normal;
 }
 
-@-moz-keyframes spin {
-    from { -moz-transform: rotate(0deg); }
-    to { -moz-transform: rotate(360deg); }
-}
-@-webkit-keyframes spin {
-    from { -webkit-transform: rotate(0deg); }
-    to { -webkit-transform: rotate(360deg); }
-}
-@keyframes spin {
-    from {transform:rotate(0deg);}
-    to {transform:rotate(360deg);}
-}
-* { 
-	margin:0px; 
-	padding:0px; 
+body {
+  color: #444;
+  background-color: #EFEFEF;
 }
 
-html, body {
-	  width:  100%;
-	  height: 100%;
-	  margin: 0px;
-      border: 0;
-      overflow: hidden; 
-      display: block;  
-	  background: radial-gradient(circle, #000000 , #B82E1F , #000000);
-}
-canvas { 
-	display:block; 
-	position: absolute; 
-	z-index: 1 
-}
-h1	{
-	text-transform:uppercase;
-	font-family: GOT;
-	font-weight:bold;
-	font-size:50pt;
-	text-align:center;
-	width: 100%;
-	position:fixed;
-	margin : 10px;
+#title {
+  text-align: center;
+  margin: auto;
 }
 
-#container {
-    position: fixed;
+#links {
+  text-align: center;
 }
 
-#overlay {
-	border-radius: 50%;
-	width: 300px;
-	height: 300px;
-	top : 50vh;
-	left: 50vw;
-	margin-top: -150px;
-	margin-left: -150px;
-	position: fixed;
-	z-index: 2;
-	background-image: url('tg2.png'); 
-	background-size : cover;
-	opacity: 0.8;
-	-webkit-transform: rotate(90deg);
-	transform: rotate(90deg);
-	-webkit-animation: spin 100s infinite linear;
+#resume, #home {
+  margin-left:  5px;
+  margin-right: 5px;
 }
 
+.profile {
+  margin-left: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
 
-@media only screen and (max-width: 768px) {
-
-#overlay {
-	width: 200px;
-	height: 200px;
-	top : 50vh;
-	left: 50vw;
-	margin-top: -100px;
-	margin-left: -100px;  
+hr {
+  width: 40%;
+  border: 0;
+  height: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 h1 {
-	font-size : 2em;
+  font-weight: normal;
+  line-height: 1.2;
 }
 
+h2 {
+  font-weight: normal;
+  line-height: 1.2;
+}
+
+p {
+  margin: 1em 0;
+  text-decoration: none;
+  text-align: justify;
+}
+
+a:hover {
+  color: #2aa198;
+  text-decoration: underline;
+  margin: 1em 0;
+}
+
+a {
+  color: #444;  
+  text-decoration: none;
+}
+
+#site {
+  text-align: left;
+  width: 70%;
+  margin: auto;
+  line-height: 1.5em;
+
+  font-family: open-sans;
+  font-size: 14px;
+}
+
+#footnote {
+  font-size: 9px;
 }
