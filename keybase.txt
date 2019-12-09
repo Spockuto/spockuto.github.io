@@ -1,0 +1,74 @@
+==================================================================
+https://keybase.io/snorlexe
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://vsekar.me
+  * I am snorlexe (https://keybase.io/snorlexe) on keybase.
+  * I have a public key with fingerprint D2EA 8F67 C6DA 49E6 64F4  9CDA D52B 4D19 50A8 31C0
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "010146ece1ec8359d4974ad6c5da9d451ca21e49c345f85a233c2b502d615d7db5180a",
+      "fingerprint": "d2ea8f67c6da49e664f49cdad52b4d1950a831c0",
+      "host": "keybase.io",
+      "key_id": "d52b4d1950a831c0",
+      "kid": "010146ece1ec8359d4974ad6c5da9d451ca21e49c345f85a233c2b502d615d7db5180a",
+      "uid": "d297781e1e4ae42b2210f82a6ed75619",
+      "username": "snorlexe"
+    },
+    "service": {
+      "hostname": "vsekar.me",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 1
+  },
+  "ctime": 1575896963,
+  "expire_in": 157680000,
+  "prev": "289eb387ac91242efdd490a9f9fc3f7989cc13281d974d7aaeb2ccb4db076b06",
+  "seqno": 6,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: Keybase OpenPGP v2.1.3
+Comment: https://keybase.io/crypto
+
+yMM/AnicrVJtUBVVGF4oESgTRmYYcAxcYQq4Xfbs3c8L1cUgG8JERaO02c7ungsb
+tHvZe4FLiH2AqE2ACpgSOFOOYFoCikqToJDAKN7BPsCcnD5oUIwhZryEMCa1l+xf
+Pzt/znmfed7nfZ9nzsUlD2HBfsMJayMyj4ILfoM9dYXYa7+vKS/FRU0uwa2leB5a
+uFC+jJwuIU+RcStOAAJQDJIQQBJnoXmZ4lkKyoxEy9AoaCBBEiCKlywUbedoSFos
+EinSBCkzgJZZWaQBR0DchNsVNQfpDl1RXYasTCLI2RlWYmRI8YhhKLuhIUOZJkVK
+BjxNQM4CJMJozNWcvg5jORE6kVnRDMwohIX1/oP/P+9d+M8ckmdZDhhqFEQUKZIk
+IOwcCRkkszQDeB/RiXQVvokMtlPV9HzkRniZCTfQIkVCvmB9Th4wipwoD+pm423C
+Hbrm0iQt34BzXS6H0+prc5U4fLxiJAoPFARRUWUjRKOjCOlORVNxKzCYkkvxSQKa
+pTme4RmLCUduh6IjQVEXYIYjjOObg4oMSZLjkWjhWCjxgKRIZJeNbAjI23m7ZLGz
+PMdLErCQHJCNxGQWQiSSkmSkLBIsIxIM7vNUoGq4lTHWhDk+v0qOCl2FumG4t2fr
+w5hfMBawyN/3ubDgoJB/v1y9JwR79/l4590r3yWvKrm9Zy5FP3qpHmtLr/0o5ua9
+Y+Ph02dftQXurplPqlSOVFxIXXm2EeuI2L206QtRbypvX3rLseb0X1jkZnUytfXH
+t+I/KwjYlzS7bSq3UvROFtLVI1z7vu/v5Iy4wxLH+seiQ9LCzxev6vzt3Giie9no
+I1vASk9a7JnA1Sen+Q3715rfSIm1pYzURRemD0RV7ozckd3aef3Kc+aApEMuz/b3
+hOxnrvbMNIVlpGuectuULXUgl+OqPm92TgccSGidNdXXdU3yQY0yd3GQKfY2VnX+
+WjtYP/eD9ZPRU4erezIST41v2HPTUXap8eq3Uy3LJl5w//zyhPnrsvtSRNvoXhB3
+I+Lx7Bnz694D3Vtut0drqR/MTKxI7s6pHD8T2tXbX9Ll99Li2muXE3fY+mwbdf/A
+8vnJ9l+W3BCCV8dszPBQH16btceF1tx/avkmWD40H/7Ypnz6xK7qzFXCokeBLnQ0
+hx7v747q9u/7I+tF7Msa7/zxJ6evB7vfqfhpfW7DK6rUBli9Zax05OnOhpiU93f1
+ZdV09N46TRQ9GzUUdORTafjEDNp2bH/nznWwJT6cN+d/vLmudfbtAdPintSu9aLW
+sHUu7W7FE/eGTy5vwS7rkYmH2mKxuARoMR/G9pYNFKzw9q47701ujs3yhFmF3phv
+hHN3MsFXVQcP/rl96G/lGcEm
+=3FLg
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/snorlexe
+
+==================================================================
