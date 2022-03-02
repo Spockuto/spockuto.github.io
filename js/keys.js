@@ -1,7 +1,7 @@
 // functionality to copy text from inviteCode to clipboard
 
 // trigger copy event on click
-$('#copy1, #copy2, #copy3').on('click', function(event) {
+$('#copy, #copy4, #copy2, #copy3').on('click', function(event) {
     console.log(event);
     copyToClipboard(event);
   });

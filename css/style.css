@@ -49,7 +49,7 @@ ul{
 }
 
 section-title:after {
-  background: none repeat scroll 0 0 #fff;
+  background: none repeat scroll 0 0 #444444  ;
   bottom: -15px;
   color: #333;
   content: "\f0a7";
@@ -57,7 +57,7 @@ section-title:after {
   line-height: 1px;
   padding: 15px 5px;
   position: absolute;
-  font-family: "FontAwesome";*/
+  font-family: "FontAwesome";
 }
 
 /* ------------------------------------------------------------------ */
@@ -132,7 +132,8 @@ header {
    height: 800px;
    min-height: 500px;
    width: 100%;
-   background: #161415 url(../images/bg.jpg) no-repeat top center;
+   /* background: #161415 url(../images/bg.jpg) no-repeat top center; */
+   background-color: #EFEFEF;
    background-size: cover !important;
 	-webkit-background-size: cover !important;
    text-align: center;
@@ -159,7 +160,7 @@ header .banner {
 header .banner-text { width: 100%; }
 header .banner-text h1 {
    font-family: 'Raleway', sans-serif;
-   color: #fff;
+   color: #444444;
    letter-spacing: 2px;
    margin: 0 auto 40px;
 }
@@ -172,13 +173,13 @@ header .banner-text h1 span {
 
 header .banner-text h3 {
    font-family: 'Raleway', sans-serif;
-   color: #FFFFFF;
+   color: #444444;
    margin: 0 auto;
    width: 80%;
 }
 header .banner-text h3 span,
 header .banner-text h3 a {
-   color: #fff;
+   color: #444444;
    font-weight: bold;
 }
 header .banner-text hr {
@@ -189,7 +190,8 @@ header .banner-text hr {
 }
 
 .header-overlay {  
-  background: #161415 url(../images/bg-blur.jpg) no-repeat top center;     
+  /* background: #161415 url(../images/bg-blur.jpg) no-repeat top center;      */
+  background-color: #EFEFEF;
   background-size:  cover!important;
   position: absolute;
   top: 0;
@@ -406,7 +408,7 @@ ul#nav li a:hover {
 
 #about p {
    line-height: 30px;
-   color: #fff;
+   color: #0f0f0f;
 }
 
 .pp-container {
@@ -1108,7 +1110,7 @@ ul#nav li a:hover {
 #call-to-action .button:hover,
 #call-to-action .button:active {
    background: #FFFFFF;
-   color: #0D0D0D;
+   color: #444444;
 }
 #call-to-action p span {
 	font-family: 'Open Sans', sans-serif; 
